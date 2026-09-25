@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+  <meta charset="utf-8" />
+  <title>Star Wars — La saga Skywalker</title>
+  <link rel="stylesheet" href="estilo.css" />
+</head>
+
+<body>
+
+  <!-- La cabecera: el logo y la presentación -->
+  <div id="cabecera">
+    <h1>
+      <img src="img/logo-star-wars.png" alt="Logo de Star Wars" width="300" />
+    </h1>
+    <p>
+      Las nueve películas de la saga Skywalker, estrenadas entre
+      <strong>1977</strong> y <strong>2019</strong>.
+      <br />
+      Una historia contada en <em>tres trilogías</em>.
+    </p>
+  </div>
+
+
+  <!-- ========== 1. ETIQUETAS PARA DAR FORMATO AL TEXTO ========== -->
+  <div id="ficha">
+
+    <h2>Sobre la saga</h2>
+
+    <!-- strong = importante (se ve grueso) · mark = resaltado con plumón -->
+    <p>
+      Star Wars es una <strong>saga cinematográfica</strong> creada por George Lucas.
+      La primera película se estrenó en <mark>1977</mark> y cambió para siempre la
+      industria del cine.
+    </p>
+
+    <!-- del = lo que se borró · ins = lo que se agregó · sup = numerito arriba -->
+    <p>
+      El presupuesto original fue de <del>8 millones</del> <ins>11 millones</ins>
+      de dólares. Recaudó más de 775<sup>1</sup> millones.
+    </p>
+
+    <!-- hr = la rayita que separa dos temas -->
+    <hr />
+
+    <!-- span = una cajita chiquita que envuelve solo esas palabras -->
+    <p>
+      Este párrafo tiene una palabra
+      <span class="resaltado">resaltada con span</span>,
+      que es un contenedor <em>en línea</em>: solo ocupa el espacio de su texto,
+      a diferencia del <code>div</code>, que ocupa todo el ancho.
+    </p>
+
+    <!-- small = letra chiquita, para las notas del final -->
+    <p><small>Fuente: datos aproximados de taquilla mundial.</small></p>
+
+  </div>
+
+
+  <!-- ========== 2. UNA IMAGEN QUE SE ADAPTA A LA PANTALLA ========== -->
+  <div id="afiche">
+
+    <h2>Afiche de la saga</h2>
+
+    <!-- src    = la imagen de siempre, la que se usa si nada más funciona
+         alt    = qué se ve en la foto (lo lee quien no puede verla)
+         srcset = la lista de opciones; el número con "w" es su ancho real -->
+    <img src="img/halcon-640x380.png"
+         alt="Afiche ilustrado de Star Wars: un planeta dorado con un anillo, sobre un fondo estrellado"
+         title="Afiche de la saga" width="300"
+         srcset="img/halcon-1280x760.png 1280w,
+                 img/halcon-640x380.png   640w,
+                 img/halcon-320x190.png   320w" />
+
+    <p>
+      <small>
+        Cambia el tamaño de la ventana del navegador y mira la pestaña Network
+        de DevTools: el navegador descarga una imagen distinta según el ancho.
+      </small>
+    </p>
+
+  </div>
+
+
+  <!-- ========== 3. CENTRAR DE ARRIBA A ABAJO ========== -->
+  <h2 class="titulo-seccion">La trilogía original</h2>
+
+  <!-- Este div es el "papá". En el CSS le pusimos display: flex y un alto fijo. -->
+  <div id="contenedor">
+
+    <!-- Las 3 tarjetas son los "hijos". Todas comparten la clase .pelicula,
+         pero cada una tiene su id para acomodarla a distinta altura. -->
+    <div id="episodio4" class="pelicula">
+      <h3>Episodio IV</h3>
+      <p>Una Nueva Esperanza</p>
+      <p><small>1977 · George Lucas</small></p>
+    </div>
+
+    <div id="episodio5" class="pelicula">
+      <h3>Episodio V</h3>
+      <p>El Imperio Contraataca</p>
+      <p><small>1980 · Irvin Kershner</small></p>
+    </div>
+
+    <div id="episodio6" class="pelicula">
+      <h3>Episodio VI</h3>
+      <p>El Retorno del Jedi</p>
+      <p><small>1983 · Richard Marquand</small></p>
+    </div>
+
+  </div>
+
+
+  <!-- ========== 4. CENTRAR DE IZQUIERDA A DERECHA ========== -->
+  <div id="cita">
+    <p>Que la Fuerza te acompañe.</p>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+/* ============================================================
+   ESTILO.CSS  ·  Sesión 3
+
+   Lo que vemos hoy:
+     1. Poner una imagen de fondo
+     2. Dar formato al texto
+     3. Pintar solo una palabra (span)
+     4. Selectores anidados
+     5. Centrar de izquierda a derecha
+     6. Centrar de arriba a abajo
+     7. Imágenes que se adaptan a la pantalla
+   ============================================================ */
+
+
+/* Paleta de colores de la página designados en variables, guardados con un nombre.
+   Así los escribimos una vez y después solo los llamamos con var(). */
+:root {
+  --color-fondo: #0B0B1A;
+  --color-texto: #EAEAEA;
+  --color-acento: #FFD447;
+  --color-caja: #2E2E4A;
+}
+
+
+/* ============================================================
+   1. LA IMAGEN DE FONDO
+   ============================================================ */
+
+/* body = toda la página. Lo que pongamos aquí lo hereda casi todo lo demás. */
+body {
+  background-color: var(--color-fondo);
+  background-image: url("img/space.jpg");
+  background-repeat: no-repeat;      /* que NO se repita como mosaico */
+  background-position: center top;   /* dónde empieza: centro y arriba */
+  background-attachment: fixed;      /* se queda quieta cuando hacemos scroll */
+  background-size: cover;            /* se agranda hasta cubrir toda la pantalla */
+
+  color: var(--color-texto);         /* color de letra para toda la página */
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;                         /* quitamos el margen que trae el navegador */
+  padding: 20px;                     /* aire por dentro, en los 4 lados */
+}
+
+
+/* ============================================================
+   2. EL FORMATO DEL TEXTO
+   ============================================================ */
+
+/* La cabecera: todo lo de adentro va centrado. */
+#cabecera {
+  text-align: center;
+  padding: 30px 20px;                /* 30 arriba y abajo, 20 a los lados */
+}
+
+/* El título grande de la página. */
+h1 {
+  font-family: Impact, Haettenschweiler, sans-serif;
+  font-size: 54px;
+  font-weight: bold;                 /* grueso */
+  text-transform: uppercase;         /* lo pasa a MAYÚSCULAS solo */
+  letter-spacing: 4px;               /* separa las letras entre sí */
+  color: var(--color-acento);
+  margin: 0;
+}
+
+/* Los títulos de cada sección. */
+h2 {
+  font-size: 24px;
+  font-style: normal;                /* normal o italic (cursiva) */
+  text-decoration: none;             /* sin subrayado */
+  color: var(--color-acento);
+}
+
+/* Todos los párrafos de la página. */
+p {
+  font-size: 15px;
+  line-height: 1.6;                  /* separa los renglones: se lee mucho mejor */
+}
+
+
+/* ============================================================
+   3. PINTAR SOLO UNA PALABRA
+   El span es una cajita que envuelve un pedacito de texto,
+   sin empujar nada ni bajar de línea.
+   ============================================================ */
+.resaltado {
+  color: var(--color-acento);
+  font-weight: bold;
+  background-color: rgba(255, 212, 71, 0.15);   /* amarillo casi transparente */
+  padding: 2px 6px;
+}
+
+
+/* ============================================================
+   4. SELECTORES ANIDADOS
+   Cuatro formas de decir "este sí, este no".
+   ============================================================ */
+
+/* Un ESPACIO = "los que estén adentro".
+   Todos los p que estén dentro de #ficha, por más hondo que estén. */
+#ficha p {
+  font-size: 15px;
+  max-width: 700px;                  /* que el renglón no se haga larguísimo */
+}
+
+/* El signo >  = "solo los hijos directos".
+   Los span que cuelgan de un p, no los que estén más abajo. */
+p > span {
+  font-style: normal;
+}
+
+/* El signo +  = "el vecino de al lado".
+   El p que viene justo pegadito después de un h2. */
+h2 + p {
+  color: var(--color-acento);
+  font-size: 17px;
+}
+
+/* El signo ~  = "todos los que vengan después".
+   Cualquier p que venga detrás de otro p, aunque no esté pegado. */
+#ficha p ~ p {
+  color: #C9C9D6;
+}
+
+/* #ficha p (que tiene un id) le gana
+   a h2 + p (que solo tiene etiquetas). El id siempre pesa más. */
+
+
+/* ============================================================
+   5. CENTRAR DE IZQUIERDA A DERECHA
+   La receta son 2 ingredientes: un ancho + margin auto a los lados.
+   Sin ancho no funciona, porque la caja ya ocupa todo.
+   ============================================================ */
+
+/* Las dos cajas de contenido. */
+#ficha,
+#afiche {
+  background-color: rgba(46, 46, 74, 0.85); /* la funcioin rgba() recibe estos parametros (red, green, blue, intensidad de transparencia)  */
+  padding: 25px;
+  margin: 20px auto;                 /* el "auto" es el que centra */
+  max-width: 800px;                  /* el ancho, nunca más de 800 */
+}
+
+/* La frase del final, dentro de su recuadro. */
+#cita {
+  width: 60%;
+  margin: 40px auto;                 /* otra vez: ancho + auto = centrado */
+  padding: 20px;
+  text-align: center;
+  border: 2px solid var(--color-acento);
+}
+
+/* El párrafo de adentro de la cita. */
+#cita p {
+  font-style: italic;                /* cursiva */
+  font-size: 20px;
+  color: var(--color-acento);
+  margin: 0;
+}
+
+
+/* ============================================================
+   6. CENTRAR DE ARRIBA A ABAJO
+   Para esto usamos flex. align-items se escribe en el padre
+   y acomoda a todos los hijos.
+   ============================================================ */
+
+/* El título de esta sección. */
+.titulo-seccion {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* La caja que contiene las 3 películas. */
+#contenedor {
+  display: flex;                     /* ahora los hijos se ponen en fila */
+  flex-direction: row;               /* en fila (row) o en columna (column) */
+  flex-wrap: wrap;                   /* si no caben, bajan de línea */
+  justify-content: center;           /* los centra de izquierda a derecha */
+
+  height: 320px;                     /* sin alto, lo de abajo no se nota */
+  align-items: center;               /* los centra de arriba a abajo */
+
+  background-color: rgba(46, 46, 74, 0.5);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Cada tarjeta de película. */
+.pelicula {
+  background-color: var(--color-caja);
+  flex-basis: 240px;                 /* con qué ancho arranca cada tarjeta */
+  margin: 8px;                       /* aire por fuera */
+  padding: 15px;                     /* aire por dentro */
+  text-align: center;
+}
+
+/* El "Episodio IV", "Episodio V"... de cada tarjeta. */
+.pelicula h3 {
+  color: var(--color-acento);
+  margin: 0 0 8px 0;                 /* arriba, derecha, abajo, izquierda */
+}
+
+/* align-self es lo mismo que align-items, pero para UN solo hijo.
+   Cada tarjeta se acomoda distinto y desobedece al papá. */
+#episodio4 { align-self: flex-start; }   /* pegada arriba */
+#episodio5 { align-self: center; }       /* al medio */
+#episodio6 { align-self: flex-end; }     /* pegada abajo */
+
+
+/* ============================================================
+   7. IMÁGENES QUE SE ADAPTAN
+   ============================================================ */
+#afiche img {
+  max-width: 100%;                   /* nunca se sale de su caja: esta es LA línea */
+  height: auto;                      /* el alto se ajusta solo, sin deformarse */
+  display: block;
+  margin: 0 auto;                    /* la centra */
+}
